@@ -1,0 +1,122 @@
+# Configuration file for the banknotes plugin. All values can be changed, just don't mess up the formatting.
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+# Important: If you change any of these values, the older banknotes will most likely still work!
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+
+# The numeric ID of a bank note, this is basically the item being used to represent the note.
+# This can be changed by replacing the current ID with a new one. However, pre-existing banknotes may stop working.
+# Set to "339" (Paper) by default.
+note-id: 339
+
+# Variables that can be used in the name and lore (case-sensitive):
+# {VALUE} - Value of the note.
+# {CREATOR} - The person who signed/created the note.
+# Tip: Add &r before starting a line so the line doesn't appear in italic format.
+
+
+note-name: "&r&l&dMoney Note&r &7(Right Click)"
+# Seperate lines with commas and keep everything inside the square brackets "[]". Each line needs to be inside quatation marks ("") as well.
+note-lore: ["&r&7Right click to deposit this note!\n&r&d&l*&r &dValue: &7${VALUE}\n&r&d&l* &r&dSigner: &7{CREATOR}&r"]
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Configuration for messages sent to the player.
+# The following variables can be used in the messages:
+# {VALUE} - Value of the note or the first argument in "/note 1 10" (Which is "1")
+# {USER} - The player who executed the command.
+# {BAL} - Current balance of the player in EconomyAPI.
+# {COUNT} - The amount of notes created with "/withdraw 1 10" (Which is "10")
+# {TOTAL_WITHDRAW} - The amount of money withdrawn in total (Example: "$10" in "/withdraw 1 10")
+
+# Tip: Use "\n" for a new line (No spaces required)
+
+## Displayed when command isn't executed by a player inside the game (Example: By the console)
+error-execute-ingame: "&cPlease run this command inside the game!"
+
+## Message sent when no arguments are given in "/withdraw":
+# Variables that can be used: {USER}
+error-empty-argument: "&d&lUsage: &r&7/withdraw [value] [count]"
+
+# Displayed when a banknote has been successfully signed/created (Example: "/note 10")
+# Variables that can be used: {VALUE}, {USER}, {TOTAL_WITHDRAW}, {COUNT}
+withdraw-sucess: "&r&7You have withdrawn &l&c${TOTAL_WITHDRAW}&r&7 from your account."
+
+## Displayed when a player tries to create a note with a value lower than or equal to 0 (Example: "/note 0")
+# Variables that can be used: {VALUE}, {USER}
+error-value-invalid: "&cThe value being withdrawn must be greater than $0!"
+
+## Displayed when a player has insufficient money (Example:  "/note 12345" but player only has $1000)
+# Variables that can be used: {VALUE}, {USER}, {BAL}
+error-insufficient-money: "&cYou don't have that much money to withdraw!"
+
+# Displayed when invalid arguments are given for the "/note" command (Example: "/note abc")
+# Variables that can be used: {VALUE}, {USER}
+error-invalid-argument: "&cInvalid arguments given!"
+
+# Displayed when a player successfully deposits a banknote.
+# Variables that can be used: {VALUE}, {USER}
+deposit-succes: "&r&7You deposited &a${VALUE} to your account."
+
+## Displayed when a player tries to deposit a banknote from an incompatible version (This might happen incase the plugin is updated.)
+# Variables that can be used: {USER}
+error-note-incompatible: "&cThis is an invalid banknote! Please contact the server administrator regarding this issue."
+
+## Displayed when a player tries to use "/deposit" on something else, like a diamond. (Doesn't apply for right-clicking)
+# Variables that can be used: {USER}
+error-note-invalid: "&cThe note being used isn't valid!"
+
+## Displayed when this configuration has reloaded after a player does "/banknotes admin reload"
+# Variables that can be used: {USER}
+reload-success: "&aThe configuration file has been reloaded!"
+
+## Displayed when a banknote has been successfully validated.
+# Variables that can be used: {USER}
+validate-succes: "&aThe note has been validated!"
+
+## Displayed when a banknote has been successfully de-validated.
+# Variables that can be used: {USER}
+devalidate-succes: "&aThe note has been de-validated!"
+
+## Displayed when a player tries to validate something else than a (devalidated) note
+# Variables that can be used: {USER}
+validate-error: "&cYou can't validate this as it isn't a banknote!"
+
+## Displayed when a player tries to de-validate something else than a note (Example: A diamond)
+# Variables that can be used: {USER}
+devalidate-error: "&cYou can't devalidate this as it isn't a banknote!"
+
+## Displayed when the note is valid when executing "/banknotes check"
+# Variables that can be used: {USER}
+note-check-valid: "&aThis is a valid note!"
+
+## Displayed when the note is invalid when executing "/banknotes check"
+# Variables that can be used: {USER}
+note-check-invalid: "&cThis is an invalid note!"
+
+## Displayed when the player executing commands doesn't have the correct permissions.
+# Variables that can be used: {USER}
+error-nopermission: "&cYou don't have permissions to execute this command!"
+
+## Displayed when a player types "/banknotes" with an unknown argument.
+# Variables that can be used: {USER}, {FULLNAME}
+unknown-command: "&6&l{FULLNAME} &r&e--- Commands\n&c/banknotes check &r&7- Check if the note you're holding is valid\n&c/banknotes admin &r&7- Display all admin commands"
+
+## Displayed when a player types "/banknotes" with an unknown argument.
+# Variables that can be used: {USER}, {FULLNAME}
+unknown-command-admin: "&6&l{FULLNAME} &r&e--- Admin commands\n&c/banknotes admin reload &r&7- Reload the config of this plugin\n&c/banknotes admin validate &r&7- Make a devalidated note valid\n&c/banknotes admin devalidate &r&7- Make a note invalid"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------  
+
+# Advanced Settings: 
+## Below are some advanced settings. Only change them if you know what you're doing.
+
+# If you want to reset the economy, change the "ecnomyid" to anything you like.
+# The value of "economyid" can't be seen by anyone else, so don't worry. Change it to whatever you like!
+# Banknotes that have a different "economyid" won't work after the setting is changed.
+# This way you don't have to delete everyone's banknotes if you want to reset the economy.
+economyid: "economyid"
+
+# By enabling this setting, banknotes that don't have an economyid (Notes from earlier versions of the plugin) will still work.
+# If you changed the "economyid" setting above, it might be a good idea to disable this.
+econid-compatibility: true
