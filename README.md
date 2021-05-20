@@ -9,4 +9,4 @@ This plugin allows players inside a server to withdraw money and turn it into a 
 
 # Requests? Suggestions? Improvements?
 - This is the final version for the plugin, and henceforth any future updates won't be made (unless it's an API change) to the plugin. You are free to fork this repository and make edits/changes to the plugin accordingly. Just credit me!
-- If you have any questions, please message me on Discord: `gsets#0001` or open a new issue!
+- If you have any questions, please message me on Discord: `gsets#0001` or open a new issue! 
