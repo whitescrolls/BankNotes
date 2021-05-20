@@ -1,0 +1,43 @@
+---
+name: BankNotes
+main: Gsets\BankNotes\BankNotes
+version: 1.0.0
+api: 3.7.0
+load: POSTWORLD
+author: §c* §7Gsets
+description: §c* §7Allows players to withdraw money and turn it into banknotes, which can be redeemed later!
+depend:
+- EconomyAPI
+commands:
+  withdraw:
+    description: Withdraw money and turn it into a note!
+    usage: /withdraw {value} [count]
+    permission: banknotes.get
+    aliases:
+    - note
+  banknotes:
+    description: Commands for banknotes!
+    usage: /banknotes <subcommand>
+    permission: banknotes.command
+  deposit:
+    description: Deposit a note to your account!
+    usage: /deposit
+    permission: banknotes.deposit
+permissions:
+  banknotes:
+    default: false
+    description: BankNotes root permission.
+    children:
+      banknotes.get:
+        default: true
+        description: Allow players to withdraw banknotes.
+      banknotes.deposit:
+        default: true
+        description: Allow players to deposit banknotes.
+      banknotes.command:
+        default: true
+        description: Plugin commands like /banknotes check.
+      banknotes.command.admin:
+        default: false
+        description: Admin commands like /banknotes admin reload, validate, devalidate.
+...
